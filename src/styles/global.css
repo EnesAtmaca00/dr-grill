@@ -1,11 +1,12 @@
 :root {
-  --kz-ink: #11120f;
-  --kz-paper: #f3efe5;
-  --kz-paper-2: #ebe5d7;
-  --kz-white: #fffdf7;
-  --kz-accent: #d9f24f;
-  --kz-line: rgba(17, 18, 15, .14);
-  --kz-shadow: 0 26px 70px rgba(25, 24, 18, .13);
+  /* DR Grill paleti: kirmizi - siyah - komur grisi (Kuzela'nin limon yesili yerine). */
+  --kz-ink: #14100f;
+  --kz-paper: #f3f0ec;
+  --kz-paper-2: #e8e3dd;
+  --kz-white: #fffdfb;
+  --kz-accent: #d62828;
+  --kz-line: rgba(20, 16, 15, .14);
+  --kz-shadow: 0 26px 70px rgba(10, 8, 7, .18);
   --kz-radius: 28px;
   --kz-pill: 999px;
   --kz-ease: cubic-bezier(.22, 1, .36, 1);
@@ -105,9 +106,10 @@ html { scroll-behavior: smooth; }
 .kz-hero,
 .wixui-kz-hero {
   min-height: min(860px, 90vh);
+  /* DR Grill'in kendi vitrin fotografi, bu repodan GitHub Pages ile servis ediliyor. */
   background:
     linear-gradient(90deg, rgba(13, 14, 11, .82), rgba(13, 14, 11, .42) 48%, rgba(13, 14, 11, .08)),
-    url('https://static.wixstatic.com/media/7279ae_9ec162d54ad64766b6bfa0def41bc811~mv2.jpg') center 42% / cover no-repeat;
+    url('https://enesatmaca00.github.io/dr-grill/assets/dr-grill-storefront.webp') center 42% / cover no-repeat;
 }
 
 .kz-hero .wixui-rich-text,
@@ -196,7 +198,7 @@ html { scroll-behavior: smooth; }
   .kz-reveal-delay { animation: none !important; }
 }
 
-/* === Kuzela ana sayfa gomulu HTML yuksekligi (otomatik uretildi) ===
+/* === DR Grill ana sayfa gomulu HTML yuksekligi (otomatik uretildi) ===
  *
  * Ana sayfa tek bir iframe'den (#html1) olusuyor. Wix Studio'da $w
  * elemanlarinin height ozelligi olmadigi icin yukseklik Velo'dan atanamiyor.

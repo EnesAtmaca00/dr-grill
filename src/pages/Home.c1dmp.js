@@ -20,7 +20,7 @@ const SITE_ORIGIN = 'https://nepagy.wixstudio.com/';
  * seklinde bir CSS sinifi ekliyoruz; yuksekligi global.css uyguluyor.
  */
 
-const EMBED_URL = 'https://enesatmaca00.github.io/kuzela/';
+const EMBED_URL = 'https://enesatmaca00.github.io/dr-grill/';
 
 // Sinirlar global.css'te uretilen kz-h-* kurallarinin araligiyla ayni olmali,
 // yoksa sinif eklenir ama karsiligi olan kural bulunmaz.
@@ -33,6 +33,10 @@ const MAX_HEIGHT = 9000;
  * /kontakt <-> /contact). Sabit adres yazmak yerine sitede hangisi varsa
  * ona gidiyoruz; boylece yeniden adlandirma linkleri kirmiyor.
  * Sirasi onemli: once tercih edilen yeni ad.
+ *
+ * NOT: Bu site Kuzela'nin coklamasi oldugu icin asagidaki adaylar Kuzela'nin
+ * sayfa adlarindan kopyalandi. DR Grill sitesinde sayfalar farkli adlandirildiysa
+ * (Wix Studio > Sayfalar panelinden kontrol et) buradaki yollari guncelle.
  */
 const PAGE_CANDIDATES = {
     order: ['/bestel-nu', '/online-ordering'],
@@ -71,7 +75,7 @@ function navigateTo(rawUrl, pageKey) {
     // Derin baglantida sorgu dizesi var (?itemId=...): slug'i degistirirken
     // onu korumak zorundayiz, yoksa urun degil genel sayfa aciliyor.
     // Sorgu dizesini tam adresten aliyoruz, site koküne gore kesilmis yoldan
-    // degil: site adresi degisince (/my-site-2 -> /kuzela) yol bos kaliyor ve
+    // degil: site adresi degisince (/my-site-2 -> /dr-grill) yol bos kaliyor ve
     // urun kimligi dusuyordu, kart urune degil sade siparis sayfasina gidiyordu.
     const targetQueryStart = target.search(/[?#]/);
     const query = targetQueryStart === -1 ? '' : target.slice(targetQueryStart);
@@ -86,13 +90,13 @@ function navigateTo(rawUrl, pageKey) {
 
     const finalPathOnly = live || pathOnly;
     if (finalPathOnly && known.length && known.indexOf(finalPathOnly) === -1) {
-        console.warn('[kuzela] hedef sayfa sitede yok:', finalPathOnly, '| mevcut sayfalar:', known.join(', '));
+        console.warn('[drgrill] hedef sayfa sitede yok:', finalPathOnly, '| mevcut sayfalar:', known.join(', '));
     }
 
     try {
         wixLocation.to(finalPath || target);
     } catch (error) {
-        console.warn('[kuzela] gezinme basarisiz:', target, (error && error.message) || error);
+        console.warn('[drgrill] gezinme basarisiz:', target, (error && error.message) || error);
     }
 }
 
@@ -151,7 +155,7 @@ $w.onReady(function () {
     function pushProducts() {
         if (delivered || !iframeAlive || !products || !products.length) return;
         try {
-            app.postMessage({ type: 'kuzelaProducts', items: products });
+            app.postMessage({ type: 'drgrillProducts', items: products });
             delivered = true;
         } catch (error) {
             // Iframe henuz hazir degilse bir sonraki mesajinda tekrar denenecek.
@@ -163,14 +167,14 @@ $w.onReady(function () {
             const list = (result && result.items) || [];
             if (!list.length) {
                 // Yedek liste gosterilecek; sebebi sessizce kaybolmasin.
-                console.warn('[kuzela] menu okunamadi:', (result && result.errors) || result);
+                console.warn('[drgrill] menu okunamadi:', (result && result.errors) || result);
                 return;
             }
             products = list;
             pushProducts();
         })
         .catch((error) => {
-            console.warn('[kuzela] menu cagrisi basarisiz:', (error && error.message) || error);
+            console.warn('[drgrill] menu cagrisi basarisiz:', (error && error.message) || error);
         });
 
     app.onMessage((event) => {
@@ -180,7 +184,7 @@ $w.onReady(function () {
         // Iframe'den herhangi bir mesaj gelmesi yuklendigini kanitliyor.
         iframeAlive = true;
 
-        if (data.type === 'kuzelaReady') {
+        if (data.type === 'drgrillReady') {
             // Iframe (yeniden) yuklendi: listeyi ona bir kez daha gonder.
             delivered = false;
             pushProducts();
@@ -188,13 +192,13 @@ $w.onReady(function () {
         }
         pushProducts();
 
-        if (data.type === 'kuzelaHomeHeight') {
+        if (data.type === 'drgrillHomeHeight') {
             const height = Number(data.height);
             if (Number.isFinite(height) && height > 0) applyHeight(height);
             return;
         }
 
-        if (data.type === 'kuzelaNavigate') {
+        if (data.type === 'drgrillNavigate') {
             // Kartlar iframe icinde target="_top" ile calisiyordu ama Wix'in
             // sandbox'li iframe'i ust pencereye gitmeye izin vermiyor, bu
             // yuzden tiklayinca hicbir sey olmuyordu. Gezinmeyi burada
@@ -203,7 +207,7 @@ $w.onReady(function () {
             return;
         }
 
-        if (data.type === 'kuzelaScrollTo') {
+        if (data.type === 'drgrillScrollTo') {
             // Iframe icindeki "#menu" gibi baglantilar Wix sayfasini kaydirmali.
             const offset = Math.max(0, Math.round(Number(data.top) || 0));
             app.scrollTo()
@@ -220,7 +224,7 @@ $w.onReady(function () {
     [400, 1200, 2500, 5000].forEach((ms) => {
         setTimeout(() => {
             try {
-                app.postMessage({ type: 'kuzelaAskHeight' });
+                app.postMessage({ type: 'drgrillAskHeight' });
             } catch (error) {
                 // Iframe henuz hazir degilse sonraki deneme yakalar.
             }

@@ -11,15 +11,14 @@ kopyasidir. DR Grill sitesi Wix'te Kuzela'nin coklamasi olarak olusturuldu,
 bu yuzden ayni Velo/CSS mimarisini kullaniyor; degisen sadece renkler,
 metinler ve gorseller.
 
-**Bu repoyu Wix'e baglamak icin ne yapman gerekiyor:**
-1. DR Grill Wix Studio sitesinde Dev Mode / Git Integration panelinden bu
-   GitHub reposuna baglan.
-2. `wix.config.json` bu repoda bilerek yok birakildi: Wix baglanti sirasinda
-   kendi site kimligiyle (`siteId`) bu dosyayi olusturur/senkronlar. Baglanti
-   sonrasi dosya gorunmuyorsa, siteId'yi Wix Studio > Site Settings
-   uzerinden alip elle ekleyebilirsin.
-3. Baglandiktan sonra bu repoya push ettigin her degisiklik siteye yansir
-   (bkz. asagidaki "Ana sayfa nasil calisiyor" bolumu).
+**Baglanti durumu:** Bu repo DR Grill Wix Studio sitesine Git Integration ile
+baglandi; `wix.config.json` Wix tarafindan kendi site kimligiyle
+(`siteId: bfc97cf4-...`) otomatik olusturuldu, dokunulmadi.
+
+**Tek eksik: GitHub Pages henuz acik degil.** `docs/index.html`'in
+<https://enesatmaca00.github.io/dr-grill/> adresinden yayinlanabilmesi icin:
+**Settings > Pages > Source: `Deploy from a branch` > Branch: `main` / `docs`**
+secilip kaydedilmeli. Acilmadan ana sayfadaki iframe bos kalir.
 
 ## Set up this repository in your IDE
 This repo is connected to a Wix site. That site tracks this repo's default branch. Any code committed and pushed to that branch from your local IDE appears on the site.
@@ -90,20 +89,15 @@ Sayfadaki butun tasarim bu iframe'in icinde.
 
 ### Eksik / TODO oldugu bilinen yerler
 
-Gercek isletme bilgisi olmadan uydurulmamasi gereken alanlar placeholder
-olarak birakildi, bunlari doldurmak gerekiyor:
-
-- **Sokak adresi**: `docs/index.html` icindeki `.location-card` bolumunde
-  `[Straat + huisnummer invullen]` yaziyor, `src/pages/masterPage.js`
-  icindeki footer metninde de sadece "2480 Dessel" var, sokak eksik.
-- **Telefon / sosyal medya**: hicbir yerde yok, istenirse eklenir.
+- **Sokak adresi / telefon**: cozuldu — Google isletme profilinden dogrulandi
+  (Turnhoutsebaan 196A, 2480 Dessel · 014 88 88 43), `docs/index.html`
+  (`.location-card`) ve `src/pages/masterPage.js` footer'ina islendi.
 - **Menu**: `docs/index.html` icindeki `FALLBACK_PRODUCTS` listesi tahmini
   isim/fiyat iceren bir YEDEK listedir (Kuzela'daki mantigin ayni).
   Gercek menu Wix Restaurants panelinden kurulunca (Kuzela'da oldugu gibi)
   ana sayfa otomatik olarak oradan besleniyor — bkz. asagidaki
   "Urun kartlari nereden geliyor" bolumu, mekanizma degismedi.
-- **wix.config.json**: bilerek eklenmedi, Wix baglantisi kurulunca
-  otomatik olusmasi bekleniyor (yukariya bakin).
+- **Sosyal medya**: hicbir yerde yok, istenirse eklenir.
 
 ## Urun kartlari nereden geliyor
 

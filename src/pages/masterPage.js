@@ -18,8 +18,7 @@ $w.onReady(function () {
     }
 
     try {
-        // TODO: gercek sokak adresi belli olunca "· [Sokak + no]" kismini ekle.
-        $w('#text2').text = 'DR GRILL · Kebab · Grill · Pizza · Pasta · 2480 Dessel · © 2026 DR Grill';
+        $w('#text2').text = 'DR GRILL · Turnhoutsebaan 196A · 2480 Dessel · © 2026 DR Grill';
     } catch (error) {
         // Footer text is optional on alternate breakpoints.
     }

@@ -30,9 +30,11 @@ const CONTACT_URL = `${SITE_BASE}/contact`;
  * Urun kartlari, Kuzela'daki gibi Wix Restaurants menusunden gelecek
  * (Home.c1dmp.js menuyu okuyup buraya postMessage ile gonderiyor).
  * Asagidaki liste PLACEHOLDER: gercek menu Wix Restaurants panelinde
- * kurulana kadar gosterilen yedek. Isimler/fiyatlar tahminidir, gercek
- * menu panelinden guncellenmeli. Fotograf yerine marka renkleriyle
- * uretilen basit rozet kullanildi (gercek urun fotografi yok).
+ * kurulana kadar gosterilen yedek. Isim/fiyat/aciklama ChatGPT ile
+ * hazirlanan tam menudeki "one cikan" 6 uruna gore guncellendi (2026-09),
+ * ama gercek urun fotografi yok - marka renkleriyle basit rozet kullanildi.
+ * Menuyu Wix Restaurants paneline girip ilgili urunleri "Featured"
+ * isaretleyince bu liste otomatik devre disi kalir, gercek foto/fiyat gelir.
  */
 function placeholderPhoto(label) {
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'>`
@@ -44,12 +46,12 @@ function placeholderPhoto(label) {
 }
 
 const FALLBACK_PRODUCTS = [
-  { name: 'Kebabschotel', note: 'Mager rundvlees, verse groenten, huissaus', price: '€12.50', image: placeholderPhoto('KEBAB') },
-  { name: 'Mixed Grill Bord', note: 'Kipfilet, lamskotelet, chipolata & frietjes', price: '€16.00', image: placeholderPhoto('GRILL') },
-  { name: 'Pizza Margherita', note: 'Tomaat, mozzarella, vers basilicum', price: '€11.00', image: placeholderPhoto('PIZZA') },
-  { name: 'Pizza Pepperoni', note: 'Pittige pepperoni, mozzarella, tomaat', price: '€12.50', image: placeholderPhoto('PIZZA') },
-  { name: 'Pasta Bolognese', note: 'Huisgemaakte tomaat-gehaktsaus, parmezaan', price: '€10.50', image: placeholderPhoto('PASTA') },
-  { name: 'Durum Kip Spicy', note: 'Kip spicy, verse groenten, saus naar keuze', price: '€8.50', image: placeholderPhoto('WRAP') }
+  { name: 'Kebap Original', note: 'Kebapvlees met verse groentjes en saus naar keuze.', price: '€9,00', image: placeholderPhoto('KEBAB') },
+  { name: 'Kapsalon Kebap', note: 'Frietjes, kebapvlees, gesmolten kaas en verse groentjes.', price: '€12,00', image: placeholderPhoto('KAPSALON') },
+  { name: 'Mixed Grill', note: 'Mix van kebap, kip, köfte en gegrild vlees met frietjes en salade.', price: '€22,00', image: placeholderPhoto('GRILL') },
+  { name: 'Pizza Margherita', note: 'Tomatensaus en kaas.', price: 'vanaf €8,50', image: placeholderPhoto('PIZZA') },
+  { name: 'Pizza Kebab Speciaal', note: 'Kebap, champignons, ui, paprika en maïs.', price: 'vanaf €12,50', image: placeholderPhoto('PIZZA') },
+  { name: 'Scampi Diabolique', note: 'Pasta met scampi\'s in een pikante tomaten-roomsaus.', price: '€14,00', image: placeholderPhoto('PASTA') }
 ];
 
 // Isimler ve aciklamalar menu panelinden geliyor, yani HTML'e gomulmeden
